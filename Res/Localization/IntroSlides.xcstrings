@@ -1,0 +1,222 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "s1_body" : {
+      "comment" : "Body of slide 1",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to GreenLight, your safe haven for mental health exploration and support. Here, you are not alone. We've created a nurturing space where you can freely express yourself, track your mood, and find resources tailored to your journey. Remember, taking the step to understand and care for your mental health is a sign of strength."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bienvenue chez GreenLight, votre refuge pour l'exploration et le soutien de la santé mentale. Ici, vous n'êtes pas seul. Nous avons créé un espace bienveillant où vous pouvez vous exprimer librement, suivre votre humeur et trouver des ressources adaptées à votre parcours. Souvenez-vous, prendre la décision de comprendre et de prendre soin de votre santé mentale est un signe de force"
+          }
+        }
+      }
+    },
+    "s1_title" : {
+      "comment" : "Title of Slide 1",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bienvenue"
+          }
+        }
+      }
+    },
+    "s2_body" : {
+      "comment" : "Body of slide 2",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In our society, the stigma around mental health often silences those in need. It's time to break the chains of this taboo. Mental health is an essential part of our overall well-being, and seeking help or discussing it should never be seen as shameful or a sign of weakness. Together, we can shift perceptions and create a more understanding world."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dans notre société, le stigmate autour de la santé mentale réduit souvent au silence ceux qui en ont besoin. Il est temps de briser les chaînes de ce tabou. La santé mentale est une partie essentielle de notre bien-être global, et chercher de l'aide ou en discuter ne devrait jamais être perçu comme honteux ou un signe de faiblesse. Ensemble, nous pouvons changer les perceptions et créer un monde plus compréhens"
+          }
+        }
+      }
+    },
+    "s2_title" : {
+      "comment" : "Title of Slide 2",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Overcoming the Taboo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Briser le Tabou"
+          }
+        }
+      }
+    },
+    "s3_body" : {
+      "comment" : "Body of slide 3",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Our goal is simple: to empower you with tools and insights to manage your mental health effectively. Whether it's tracking your mood, understanding your thoughts through journaling, or finding calm with meditation, GreenLight is here to guide you towards a balanced mind and a happier life."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notre objectif est simple : vous donner les outils et les insights pour gérer efficacement votre santé mentale. Que ce soit en suivant votre humeur, en comprenant vos pensées par le biais de journaux intimes, ou en trouvant la paix avec la méditation, GreenLight est là pour vous guider vers un esprit équilibré et une vie plus heureuse."
+          }
+        }
+      }
+    },
+    "s3_title" : {
+      "comment" : "Title of slide 3",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Goal of the Application"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Objectif de l'Application"
+          }
+        }
+      }
+    },
+    "s4_body" : {
+      "comment" : "Body of slide 4",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "As you embark on this journey, choose a companion to grow alongside you—a symbol of your progress and flourishing mental health. Would you prefer a resilient cactus or a nurturing simple plant? Don't worry; this choice is just for fun and can always be changed later in the settings. It's a visual representation of your growth as you use the app."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alors que vous vous lancez dans ce voyage, choisissez un compagnon pour grandir à vos côtés — un symbole de vos progrès et de l'épanouissement de votre santé mentale. Préférez-vous un cactus résilient ou une plante simple et nourrissante ? Ne vous inquiétez pas ; ce choix est juste pour le plaisir et peut toujours être modifié plus tard dans les paramètres. C'est une représentation visuelle de votre croissance au fur et à mesure que vous utilisez l'application."
+          }
+        }
+      }
+    },
+    "s4_title" : {
+      "comment" : "Title of Slide 4",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose Your Plant"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez Votre Plante"
+          }
+        }
+      }
+    },
+    "s5_body" : {
+      "comment" : "body of slide 5",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personalize your journey with us by selecting the theme that resonates most with you. Do you find calm in the serenity of green, or does the tranquility of blue speak to you? Choose now, and remember, you can always adjust your preference in the settings later."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personnalisez votre voyage avec nous en sélectionnant le thème qui résonne le plus en vous. Trouvez-vous la paix dans la sérénité du vert, ou est-ce la tranquillité du bleu qui vous parle ? Choisissez maintenant, et souvenez-vous, vous pouvez toujours ajuster votre préférence dans les paramètres plus tard."
+          }
+        }
+      }
+    },
+    "s5_title" : {
+      "comment" : "title of slide 5",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choose Your Theme"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Choisissez Votre Thème"
+          }
+        }
+      }
+    },
+    "s6_body" : {
+      "comment" : "body of slide 6",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Now, let's take the first step together. Sign in to begin your journey with GreenLight. Your path to understanding and improving your mental health starts here. Welcome aboard!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Maintenant, faisons le premier pas ensemble. Connectez-vous pour commencer votre voyage avec GreenLight. Votre chemin vers la compréhension et l'amélioration de votre santé mentale commence ici. Bienvenue à bord !"
+          }
+        }
+      }
+    },
+    "s6_title" : {
+      "comment" : "title of slide 6",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Login and Launch"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connexion et Lancement"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

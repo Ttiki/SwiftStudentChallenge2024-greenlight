@@ -9,8 +9,8 @@ import SwiftUI
 
 struct IntroSlide: View {
     var imageName: String
-    var title: String
-    var description: String
+    var titleKey: String
+    var descriptionKey: String
 
     var body: some View {
         VStack {
@@ -18,10 +18,10 @@ struct IntroSlide: View {
                 .resizable()
                 .scaledToFit()
                 .frame(height: 200)
-            Text(title)
+            Text(NSLocalizedString(titleKey, comment: "Intro slide title"))
                 .font(.title)
                 .padding(.top, 20)
-            Text(description)
+            Text(NSLocalizedString(descriptionKey, comment: "Intro slide description"))
                 .font(.body)
                 .padding()
         }
