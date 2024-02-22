@@ -7,7 +7,12 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct HomePageView: View {
+    // Accessing the current theme colors from ThemeManager
+    let theme = ThemeManager.currentThemeColors()
+    
     @State private var username: String = "Username" // Replace with actual data source
     @State private var motivationMessage: String = "Keep going, you're doing great!" // Replace with actual data source
     @State private var statistics: [(String, String)] = [
@@ -17,44 +22,36 @@ struct HomePageView: View {
     ]
     @State private var growthStage: Int = 1 // Initial growth stage, managed by this parent view or another logic
 
-    
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 20) {
-                    // Plant image (to see evolution
                     PlantImageView(growthStage: growthStage)
                     
                     Text("Welcome back \(username)")
                         .font(.title)
                         .fontWeight(.bold)
-                        .foregroundColor(Color("Primary")) // Use your primary color here
+                        .foregroundColor(theme.primary) // Directly using primary color from theme
                         .frame(maxWidth: .infinity, alignment: .center)
                         .padding(.top, 20)
                     
                     Text(motivationMessage)
                         .font(.title2)
-                        .foregroundColor(Color("Secondary")) // Use your secondary color here
+                        .foregroundColor(theme.secondary) // Directly using secondary color from theme
                         .frame(maxWidth: .infinity, alignment: .center)
                     
                     Divider()
                     
                     // Buttons for various actions
                     VStack(spacing: 20) {
-                        Section(header: Text("How are you doing today?")){
+                        Section(header: Text("How are you doing today?").foregroundColor(theme.primary)) { // Theme color for the header
                             Button("Record emotion state", action: {})
-                                .foregroundColor(Color("Action")) // Use your action color here
                             Button("Record negative thoughts", action: {})
-                                .foregroundColor(Color("Action")) // Use your action color here
                             Button("Record dream", action: {})
-                                .foregroundColor(Color("Action")) // Use your action color here
                             Button("Record activity", action: {})
-                                .foregroundColor(Color("Action")) // Use your action color here
                             Button("Talk to the chatbot", action: {})
-                                .foregroundColor(Color("Action")) // Use your action color here
                         }
-                        
-                        
+                        .foregroundColor(theme.action) // Directly using action color from theme for buttons
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                     
@@ -62,7 +59,7 @@ struct HomePageView: View {
                     TabView {
                         ForEach(statistics, id: \.0) { data in
                             GlobalStatsCard(title: data.0, stats: data.1)
-                                .foregroundColor(Color("Primary")) // Use your primary color here
+                                .foregroundColor(theme.primary) // Using primary color for text in GlobalStatsCard
                         }
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
@@ -71,7 +68,6 @@ struct HomePageView: View {
                 .padding()
             }
             .navigationTitle("Main Page")
-            
         }
     }
 }
