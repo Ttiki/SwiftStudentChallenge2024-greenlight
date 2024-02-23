@@ -18,10 +18,10 @@ struct HomePageView: View {
     @State private var statistics: [(String, String)] = [
         ("Days Without Taking", "69"),
         ("Dream Recording Streak", "5"),
-        // Add more statistics as needed
     ]
     @State private var growthStage: Int = 1 // Initial growth stage, managed by this parent view or another logic
-
+    @State private var showAlert = false
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -43,31 +43,40 @@ struct HomePageView: View {
                     Divider()
                     
                     // Buttons for various actions
-                    VStack(spacing: 20) {
-                        Section(header: Text("How are you doing today?").foregroundColor(theme.themeColors.primary)) { // Theme color for the header
-                            Button("Record emotion state", action: {})
-                            Button("Record negative thoughts", action: {})
-                            Button("Record dream", action: {})
-                            Button("Record activity", action: {})
-                            Button("Talk to the chatbot", action: {})
+                    NavigationView() {
+                        Form {
+                            Section(header: Text("How are you doing today?").foregroundColor(theme.themeColors.primary)) { // Theme color for the header
+                                Button("Record emotion state", action: {})
+                                Button("Record negative thoughts", action: {})
+                                Button("Record dream", action: {})
+                                Button("Record activity", action: {})
+                                Button("Talk to the chatbot", action: {
+                                    showAlert = true
+                                })
+                            }
                         }
-                        
                     }
                     .frame(maxWidth: .infinity, alignment: .center)
                     
                     // Carousel for statistics
                     TabView {
-                        ForEach(statistics, id: \.0) { data in
-                            GlobalStatsCard(title: data.0, stats: data.1)
-                                .foregroundColor(theme.themeColors.primary) // Using primary color for text in GlobalStatsCard
+                        ForEach(statistics, id: \.0) { stat in
+                            GlobalStatsCard(title: stat.0, stats: stat.1)
                         }
                     }
                     .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-                    .frame(height: 300) // Adjust height as needed
+                    .frame(height: 220) // Ensure carousel has a defined height
                 }
                 .padding()
             }
             .navigationTitle("Main Page")
+            .alert(isPresented: $showAlert) {
+                Alert(
+                    title: Text("Functionality not implemented!"),
+                    message: Text("This is a demo. You would be redirected to the chatbot. This functionality has not been implemented for this demo!"),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
         }
     }
 }

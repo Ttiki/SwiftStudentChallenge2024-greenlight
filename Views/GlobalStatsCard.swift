@@ -10,25 +10,37 @@ import SwiftUI
 struct GlobalStatsCard: View {
     var title: String
     var stats: String
+    // Accessing the current theme colors from ThemeManager
+    @ObservedObject var theme = ThemeManager.shared
+
     var body: some View {
-        VStack {
-            Text(title)
-                .font(.title2)
-                .fontWeight(.semibold)
-                .foregroundColor(Color("Primary")) // Use your primary color here
-                .padding(.top, 10)
-            
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Image(systemName: "chart.bar") // Example icon, change as needed
+                    .foregroundColor(theme.themeColors.action) // Assuming dynamic theme colors
+                    .imageScale(.large)
+                
+                Text(title)
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .foregroundColor(theme.themeColors.primary)
+            }
+            .padding(.top)
+
             Spacer()
-            
+
             Text(stats)
-                .font(.largeTitle)
+                .font(.title)
                 .fontWeight(.bold)
-                .foregroundColor(Color("Action")) // Use your action color here
-                .padding(.bottom, 10)
+                .foregroundColor(theme.themeColors.action)
+                .padding(.bottom)
         }
-        .frame(width: 200, height: 200)
-        .background(Color("Secondary")) // Use your secondary color here for the card background
+        .padding()
+        .frame(width: 250, height: 200) // Adjusted for better visibility in carousel
+        .background(theme.themeColors.secondary)
         .cornerRadius(20)
-        .padding(.horizontal, 20)
+        .shadow(radius: 5) // Optional: adds depth to the card
+        .padding(.horizontal)
     }
 }
+
