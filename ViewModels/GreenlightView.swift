@@ -9,8 +9,11 @@ import SwiftUI
 
 struct GreenlightView: View {
     
-    // TODO : Implement
+    //Binding var
     @Binding var isUserLoggedIn: Bool
+    @Binding var hasCompletedIntro: Bool
+    
+    //TODO : Implement
     @State private var userName = "User"
     @State private var motivationalMessage = "You are stronger than you think."
     
@@ -38,7 +41,7 @@ struct GreenlightView: View {
                     }
             
             // Settings option
-            SettingsView(isUserLoggedIn: $isUserLoggedIn)
+            SettingsView(isUserLoggedIn: $isUserLoggedIn, hasCompletedIntro: $hasCompletedIntro)
                 .tabItem {
                     Image(systemName: "gear")
                     Text("Settings")

@@ -3,8 +3,8 @@ import SwiftUI
 @main
 struct GreenLight: App {
     init() {
-            RecordingsManager.shared.loadRecordings()
-        }
+        RecordingsManager.shared.loadRecordings()
+    }
     
     var body: some Scene {
         WindowGroup {
@@ -12,8 +12,7 @@ struct GreenLight: App {
             ContentView()
                 .onDisappear {
                     RecordingsManager.shared.saveRecordings()
-                
-            }
+                }
         }
     }
 }

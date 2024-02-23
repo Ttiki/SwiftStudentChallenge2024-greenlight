@@ -10,7 +10,7 @@ import SwiftUI
 
 // LoginView simulation
 struct LoginView: View {
-    @Binding var isUserLoggedIn: Bool
+    @AppStorage("isUserLoggedIn") private var isUserLoggedIn: Bool = false
     
     var body: some View {
         Button("Login") {
