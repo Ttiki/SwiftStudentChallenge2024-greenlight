@@ -16,7 +16,7 @@ struct SoundscapeListView: View {
     ]
     
     // Accessing the current theme colors from ThemeManager
-    let theme = ThemeManager.currentThemeColors()
+    @ObservedObject var theme = ThemeManager.shared
 
     var body: some View {
         NavigationView {
@@ -24,9 +24,9 @@ struct SoundscapeListView: View {
                 NavigationLink(destination: SoundscapeCustomizationView(soundscapeName: soundscape.name)) {
                     HStack {
                         Image(systemName: soundscape.iconName)
-                            .foregroundColor(theme.action) // Using the action color from the current theme
+                            .foregroundColor(theme.themeColors.action) // Using the action color from the current theme
                         Text(soundscape.name)
-                            .foregroundColor(theme.primary) // Using the primary color from the current theme
+                            .foregroundColor(theme.themeColors.primary) // Using the primary color from the current theme
                     }
                 }
             }

@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  
+//
 //
 //  Created by Clément Combier on 21/02/2024.
 //
@@ -9,10 +9,19 @@ import Foundation
 import SwiftUI
 
 // Define the app's theme options
-enum AppTheme: String {
+enum AppTheme: String, CaseIterable, Identifiable {
     case green, blue
+    
+    var id: String { self.rawValue }
+    
+    // Add a user-friendly name for each theme
+    var displayName: String {
+        switch self {
+        case .green: return "Green"
+        case .blue: return "Blue"
+        }
+    }
 }
-
 // Theme color definitions
 struct ThemeColors {
     var primary: Color
@@ -24,19 +33,31 @@ struct ThemeColors {
     var error: Color
 }
 
-class ThemeManager {
+class ThemeManager: ObservableObject {
     static let shared = ThemeManager()
     
-    // Use @AppStorage to automatically save and load the theme preference
-    @AppStorage("userTheme") static var currentTheme: AppTheme = .green // Default to green
+    // Move from static to instance property
+    @AppStorage("userTheme") var currentTheme: AppTheme = .green
     
-    // Define your themes
-    static let greenTheme = ThemeColors(primary: Color("Green/primary"), secondary: Color("Green/secondary"), action: Color("Green/action"), highlight: Color("Green/highlight"), success: Color("Green/success"), warning: Color("Green/warning"), error: Color("Green/error"))
-    static let blueTheme = ThemeColors(primary: Color("Blue/primary"), secondary: Color("Blue/secondary"), action: Color("Blue/action"), highlight: Color("Blue/highlight"), success: Color("Blue/success"), warning: Color("Blue/warning"), error: Color("Blue/error"))
+    @Published var themeColors: ThemeColors
     
+    init() {
+        // Initialize themeColors based on the current theme
+        self.themeColors = ThemeManager.themeColors(for: .green)
+    }
     
-    // Static method to access current theme colors
-        static func currentThemeColors() -> ThemeColors {
-            return ThemeManager.currentTheme == .green ? ThemeManager.greenTheme : ThemeManager.blueTheme
+    // Static method to define your themes
+    private static func themeColors(for theme: AppTheme) -> ThemeColors {
+        switch theme {
+        case .green:
+            return ThemeColors(primary: Color("Green/primary"), secondary: Color("Green/secondary"), action: Color("Green/action"), highlight: Color("Green/highlight"), success: Color("Green/success"), warning: Color("Green/warning"), error: Color("Green/error"))
+        case .blue:
+            return ThemeColors(primary: Color("Blue/primary"), secondary: Color("Blue/secondary"), action: Color("Blue/action"), highlight: Color("Blue/highlight"), success: Color("Blue/success"), warning: Color("Blue/warning"), error: Color("Blue/error"))
         }
+    }
+    
+    // Update themeColors based on the current theme
+    func updateThemeColors() {
+        self.themeColors = ThemeManager.themeColors(for: currentTheme)
+    }
 }
