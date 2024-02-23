@@ -10,13 +10,12 @@ import SwiftUI
 
 // LoginView simulation
 struct LoginView: View {
-    @AppStorage("isUserLoggedIn") private var isUserLoggedIn: Bool = false
-    
-    var body: some View {
-        Button("Login") {
-            User.save(userIdentifier: "exampleUser123")
-            // Proceed to main content view or update state to reflect login
-            isUserLoggedIn = true
+    @Binding var isUserLoggedIn: Bool
+        
+        var body: some View {
+            // Your login content
+            Button("Log In") {
+                isUserLoggedIn = true // Update based on actual login logic
+            }
         }
-    }
 }

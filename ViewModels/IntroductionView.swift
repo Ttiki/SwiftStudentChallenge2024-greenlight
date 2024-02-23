@@ -9,6 +9,8 @@ import SwiftUI
 
 struct IntroductionView: View {
     
+    var onCompletion: () -> Void
+    
     var body: some View {
         TabView {
             //Displaying all intro slides
@@ -20,7 +22,7 @@ struct IntroductionView: View {
             VStack {
                 Text("Finalize Your Settings")
                 Button("Get Started") {
-                    
+                    onCompletion()
                 }
             }
         }

@@ -2,17 +2,24 @@ import SwiftUI
 
 @main
 struct GreenLight: App {
+    @AppStorage("hasCompletedIntro") private var hasCompletedIntro: Bool = false
+    @AppStorage("isUserLoggedIn") private var isUserLoggedIn: Bool = false
+    
     init() {
         RecordingsManager.shared.loadRecordings()
     }
     
     var body: some Scene {
         WindowGroup {
-            //Initializaing the main view
-            ContentView()
-                .onDisappear {
-                    RecordingsManager.shared.saveRecordings()
+            if !hasCompletedIntro {
+                IntroductionView {
+                    hasCompletedIntro = true
                 }
+            } else if !isUserLoggedIn {
+                LoginView(isUserLoggedIn: $isUserLoggedIn)
+            } else {
+                GreenlightView(isUserLoggedIn: $isUserLoggedIn, hasCompletedIntro: $hasCompletedIntro)
+            }
         }
     }
 }
