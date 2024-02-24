@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  SettingsView.swift
 //
 //
 //  Created by Clément Combier on 17/02/2024.

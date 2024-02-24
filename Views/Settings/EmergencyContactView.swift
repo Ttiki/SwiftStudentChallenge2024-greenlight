@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  EmergencyContactView.swift
 //  
 //
 //  Created by Clément Combier on 21/02/2024.

@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AddictionType.swift
 //  
 //
 //  Created by Clément Combier on 22/02/2024.

@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct IntroSlide: View {
+struct IntroSlideView: View {
     var imageName: String
     var titleKey: String
     var descriptionKey: String

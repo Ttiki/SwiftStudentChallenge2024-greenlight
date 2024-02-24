@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  GreenlightView.swift
 //
 //
 //  Created by Clément Combier on 16/02/2024.
@@ -20,7 +20,7 @@ struct GreenlightView: View {
     var body: some View {
         TabView {
             // Homepage with quick access and statistics
-            HomePageView()
+            HomePageView(viewModel: HomePageViewModel())
                 .tabItem {
                     Image(systemName: "house.fill")
                     Text("Main")

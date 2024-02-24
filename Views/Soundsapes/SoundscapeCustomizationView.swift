@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  SoundscapeCustomizationView.swift
 //  
 //
 //  Created by Clément Combier on 18/02/2024.

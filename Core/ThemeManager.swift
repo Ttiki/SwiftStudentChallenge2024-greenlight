@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AppTheme.swift
 //
 //
 //  Created by Clément Combier on 21/02/2024.
@@ -31,6 +31,7 @@ struct ThemeColors {
     var success: Color
     var warning: Color
     var error: Color
+    var defaultText: Color
 }
 
 class ThemeManager: ObservableObject {
@@ -50,9 +51,9 @@ class ThemeManager: ObservableObject {
     private static func themeColors(for theme: AppTheme) -> ThemeColors {
         switch theme {
         case .green:
-            return ThemeColors(primary: Color("Green/primary"), secondary: Color("Green/secondary"), action: Color("Green/action"), highlight: Color("Green/highlight"), success: Color("Green/success"), warning: Color("Green/warning"), error: Color("Green/error"))
+            return ThemeColors(primary: Color("Green/primary"), secondary: Color("Green/secondary"), action: Color("Green/action"), highlight: Color("Green/highlight"), success: Color("Green/success"), warning: Color("Green/warning"), error: Color("Green/error"), defaultText: Color("defaultText"))
         case .blue:
-            return ThemeColors(primary: Color("Blue/primary"), secondary: Color("Blue/secondary"), action: Color("Blue/action"), highlight: Color("Blue/highlight"), success: Color("Blue/success"), warning: Color("Blue/warning"), error: Color("Blue/error"))
+            return ThemeColors(primary: Color("Blue/primary"), secondary: Color("Blue/secondary"), action: Color("Blue/action"), highlight: Color("Blue/highlight"), success: Color("Blue/success"), warning: Color("Blue/warning"), error: Color("Blue/error"), defaultText: Color("defaultText"))
         }
     }
     

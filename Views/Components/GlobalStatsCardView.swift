@@ -1,5 +1,5 @@
 //
-//  SwiftUIView.swift
+//  GlobalStatsCard.swift
 //  
 //
 //  Created by Clément Combier on 09/02/2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GlobalStatsCard: View {
+struct GlobalStatsCardView: View {
     var title: String
     var stats: String
     // Accessing the current theme colors from ThemeManager
@@ -17,13 +17,13 @@ struct GlobalStatsCard: View {
         VStack(alignment: .leading, spacing: 10) {
             HStack {
                 Image(systemName: "chart.bar") // Example icon, change as needed
-                    .foregroundColor(theme.themeColors.action) // Assuming dynamic theme colors
+                    .foregroundColor(.white) // Assuming dynamic theme colors
                     .imageScale(.large)
                 
                 Text(title)
                     .font(.headline)
                     .fontWeight(.semibold)
-                    .foregroundColor(theme.themeColors.primary)
+                    .foregroundColor(.white)
             }
             .padding(.top)
 
@@ -32,7 +32,7 @@ struct GlobalStatsCard: View {
             Text(stats)
                 .font(.title)
                 .fontWeight(.bold)
-                .foregroundColor(theme.themeColors.action)
+                .foregroundColor(.white)
                 .padding(.bottom)
         }
         .padding()
