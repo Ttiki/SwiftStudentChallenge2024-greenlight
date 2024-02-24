@@ -1,56 +1,135 @@
 import Foundation
 
+// Sadly, I'm running out of time to implement this class and pipeline the way I envisionned it. So I'm going bcak to the old basic implementation.
+// Because if I had more time, abstraction and agnostic approach would be cleanier than this copy/paste horror.
 class RecordingsManager {
     static let shared = RecordingsManager()
+    
     private init() {}
-    
-    // Store recordings in a type-agnostic way
-    private var recordingsStorage: [String: [Data]] = [:]
-    
-    // Add a new recording
-    func addRecording<T: Recording>(_ recording: T) {
-        let key = String(describing: T.self)
-        var recordingsForType = recordingsStorage[key] ?? []
-        if let encodedRecording = try? JSONEncoder().encode(recording) {
-            recordingsForType.append(encodedRecording)
-            recordingsStorage[key] = recordingsForType
+
+    var emotionRecordings: [EmotionRecording] = []
+    var dreamRecordings: [DreamRecording] = []
+    var activityRecordings: [ActivityRecording] = []
+    var thoughtRecordings: [ThoughtRecording] = []
+
+    // Emotion Recordings
+    func addEmotionRecording(_ recording: EmotionRecording) {
+        emotionRecordings.append(recording)
+        saveEmotionRecordings()
+    }
+
+    func getEmotionRecordings() -> [EmotionRecording] {
+        return emotionRecordings
+    }
+
+    private func saveEmotionRecordings() {
+        if let encoded = try? JSONEncoder().encode(emotionRecordings) {
+            UserDefaults.standard.set(encoded, forKey: "EmotionRecordings")
         }
     }
-    
-   
-    // Remove a recording
-    func removeRecording<T: Recording>(ofType type: T.Type, withId id: UUID) {
-        let key = String(describing: T.self)
-        guard var recordingsForType = recordingsStorage[key] else { return }
-        
-        // Filter out the recording with the specified ID
-        recordingsForType = recordingsForType.compactMap { data -> Data? in
-            guard let recording = try? JSONDecoder().decode(T.self, from: data) else { return nil }
-            return recording.id == id ? nil : data
+
+    private func loadEmotionRecordings() {
+        if let data = UserDefaults.standard.data(forKey: "EmotionRecordings"),
+           let decoded = try? JSONDecoder().decode([EmotionRecording].self, from: data) {
+            emotionRecordings = decoded
         }
-        
-        // Update the storage with the modified array
-        recordingsStorage[key] = recordingsForType
     }
-    
-    // Retrieve recordings of a specific type
-    func getRecordings<T: Recording>(ofType type: T.Type) -> [T] {
-        let key = String(describing: T.self)
-        guard let encodedRecordings = recordingsStorage[key] else { return [] }
-        return encodedRecordings.compactMap { try? JSONDecoder().decode(T.self, from: $0) }
+
+    // Dream Recordings
+    func addDreamRecording(_ recording: DreamRecording) {
+        dreamRecordings.append(recording)
+        saveDreamRecordings()
     }
-    
-    // Save all recordings to persistent storage
-    func saveRecordings() {
-        let defaults = UserDefaults.standard
-        defaults.set(recordingsStorage, forKey: "recordingsStorage")
+
+    func getDreamRecordings() -> [DreamRecording] {
+        return dreamRecordings
     }
-    
-    // Load all recordings from persistent storage
-    func loadRecordings() {
-        let defaults = UserDefaults.standard
-        if let storedRecordingsStorage = defaults.dictionary(forKey: "recordingsStorage") as? [String: [Data]] {
-            recordingsStorage = storedRecordingsStorage
+
+    private func saveDreamRecordings() {
+        if let encoded = try? JSONEncoder().encode(dreamRecordings) {
+            UserDefaults.standard.set(encoded, forKey: "DreamRecordings")
         }
+    }
+
+    private func loadDreamRecordings() {
+        if let data = UserDefaults.standard.data(forKey: "DreamRecordings"),
+           let decoded = try? JSONDecoder().decode([DreamRecording].self, from: data) {
+            dreamRecordings = decoded
+        }
+    }
+
+    // Activity Recordings
+    func addActivityRecording(_ recording: ActivityRecording) {
+        activityRecordings.append(recording)
+        saveActivityRecordings()
+    }
+
+    func getActivityRecordings() -> [ActivityRecording] {
+        return activityRecordings
+    }
+
+    private func saveActivityRecordings() {
+        if let encoded = try? JSONEncoder().encode(activityRecordings) {
+            UserDefaults.standard.set(encoded, forKey: "ActivityRecordings")
+        }
+    }
+
+    private func loadActivityRecordings() {
+        if let data = UserDefaults.standard.data(forKey: "ActivityRecordings"),
+           let decoded = try? JSONDecoder().decode([ActivityRecording].self, from: data) {
+            activityRecordings = decoded
+        }
+    }
+
+    // Thought Recordings
+    func addThoughtRecording(_ recording: ThoughtRecording) {
+        thoughtRecordings.append(recording)
+        saveThoughtRecordings()
+    }
+
+    func getThoughtRecordings() -> [ThoughtRecording] {
+        return thoughtRecordings
+    }
+
+    private func saveThoughtRecordings() {
+        if let encoded = try? JSONEncoder().encode(thoughtRecordings) {
+            UserDefaults.standard.set(encoded, forKey: "ThoughtRecordings")
+        }
+    }
+
+    private func loadThoughtRecordings() {
+        if let data = UserDefaults.standard.data(forKey: "ThoughtRecordings"),
+           let decoded = try? JSONDecoder().decode([ThoughtRecording].self, from: data) {
+            thoughtRecordings = decoded
+        }
+    }
+
+    // Remove methods for each recording type
+    func removeEmotionRecording(at index: Int) {
+        emotionRecordings.remove(at: index)
+        saveEmotionRecordings()
+    }
+
+    func removeDreamRecording(at index: Int) {
+        dreamRecordings.remove(at: index)
+        saveDreamRecordings()
+    }
+
+    func removeActivityRecording(at index: Int) {
+        activityRecordings.remove(at: index)
+        saveActivityRecordings()
+    }
+
+    func removeThoughtRecording(at index: Int) {
+        thoughtRecordings.remove(at: index)
+        saveThoughtRecordings()
+    }
+
+    // Call these load methods at app startup or appropriate place to initialize your data
+    func loadAllRecordings() {
+        loadEmotionRecordings()
+        loadDreamRecordings()
+        loadActivityRecordings()
+        loadThoughtRecordings()
     }
 }

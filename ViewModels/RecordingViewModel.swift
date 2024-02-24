@@ -44,68 +44,40 @@ enum RecordingType: CaseIterable, Identifiable {
 }
 
 
-class RecordingViewModel: ObservableObject {
+class RecordingsViewModel: ObservableObject {
     private let manager = RecordingsManager.shared
-    @Published var selectedRecordingType: RecordingType?
     
-    // Temporary storage for fetched recordings, to be used by the view
     @Published var emotionRecordings: [EmotionRecording] = []
     @Published var dreamRecordings: [DreamRecording] = []
-    @Published var thoughtecordings: [ThoughtRecording] = []
     @Published var activityRecordings: [ActivityRecording] = []
-    
-    @Published var recordings: [Recording] = []
-    
-    
-    // Because of a lack of time, I will implement this raw
-    // way of fetching the correct data, which render my abstract
-    // code rather useless and too complex to end on a note like
-    // that. In a future update, a better implementation should be
-    // written!
-    func fetchEmotionRecordings() {
-        emotionRecordings = manager.getRecordings(ofType: EmotionRecording.self)
-    }
-    func fetchDreamRecordings() {
-        dreamRecordings = manager.getRecordings(ofType: DreamRecording.self)
-    }
-    func fetchThoughtRecordings() {
-        thoughtecordings = manager.getRecordings(ofType: ThoughtRecording.self)
-    }
-    func fetchActivityRecordings() {
-        activityRecordings = manager.getRecordings(ofType: ActivityRecording.self)
+    @Published var thoughtRecordings: [ThoughtRecording] = []
+
+    init() {
+        loadAllRecordings()
     }
     
-    // Assuming Recording conforms to Identifiable for use in ForEach
-    func fetchRecordings<T: Recording>(ofType type: T.Type) {
-        recordings = recordingsManager.getRecordings(ofType: type)
+    func loadAllRecordings() {
+        emotionRecordings = manager.getEmotionRecordings()
+        dreamRecordings = manager.getDreamRecordings()
+        activityRecordings = manager.getActivityRecordings()
+        thoughtRecordings = manager.getThoughtRecordings()
     }
     
-    func removeRecording(at offsets: IndexSet) {
-        // Example deletion logic, adjust according to your data structure and requirements
-        for index in offsets {
-            let recordingToRemove = recordings[index]
-            // Assuming a method to delete a recording by ID exists in RecordingsManager
-            manager.removeRecording(ofType: type(of: recordingToRemove), withId: recordingToRemove.id)
+    func addRecording<T: Recording>(_ recording: T) {
+        switch recording {
+        case let emotionRecording as EmotionRecording:
+            manager.addEmotionRecording(emotionRecording)
+        case let dreamRecording as DreamRecording:
+            manager.addDreamRecording(dreamRecording)
+        case let activityRecording as ActivityRecording:
+            manager.addActivityRecording(activityRecording)
+        case let thoughtRecording as ThoughtRecording:
+            manager.addThoughtRecording(thoughtRecording)
+        default:
+            break
         }
-        // Refresh the recordings list after deletion
-        fetchRecordings(ofType: T.self) // Adjust the type parameter according to your setup
+        loadAllRecordings() // Refresh all recordings
     }
     
-    func selectRecordingType(_ type: RecordingType) {
-        selectedRecordingType = type
-        // Potentially load or refresh recordings based on the selected type
-    }
-    
-    func addNewRecording<T: Recording>(_ recording: T) {
-        manager.addRecording(recording)
-        // Trigger any necessary updates or reloading of data
-    }
-    
-    func removeRecording<T: Recording>(ofType type: T.Type, withId id: UUID) {
-        manager.removeRecording(ofType: type, withId: id)
-        // Notify the view of changes as necessary, such as reloading data
-    }
-    
-    
-    
+    // TODO : Add the remove function
 }

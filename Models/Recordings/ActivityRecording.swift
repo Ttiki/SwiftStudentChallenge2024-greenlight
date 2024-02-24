@@ -7,22 +7,11 @@
 
 import Foundation
 
-class ActivityRecording: Recording{
+struct ActivityRecording: Recording, Codable{
     var id: UUID
     var date: Date
     var maxStrike: Int
     var currentStrike: Int
     var mood: Double
-    var description: String
-    
-    
-    init(id: UUID = UUID(), date: Date, maxStrike: Int, currentStrike: Int, mood: Double, description: String) {
-        self.id = id
-        self.date = date
-        self.maxStrike = maxStrike
-        self.currentStrike = currentStrike
-        self.mood = mood
-        self.description = description
-    }
-    
+    var description: String    
 }

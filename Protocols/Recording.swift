@@ -8,10 +8,10 @@
 import Foundation
  
 protocol Recording: Codable, Identifiable{
-    var id: UUID { get }
-    var date: Date { get }
-    var maxStrike: Int { get }
-    var currentStrike: Int { get }
-    var mood: Double { get }
-    var description: String { get }
+    var id: UUID { get set}
+    var date: Date { get set}
+    var maxStrike: Int { get set}
+    var currentStrike: Int { get set}
+    var mood: Double { get set}
+    var description: String { get set}
 }
