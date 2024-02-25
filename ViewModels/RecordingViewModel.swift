@@ -7,41 +7,7 @@
 
 import Foundation
 
-// Handle the different type of recordings available in the app
-enum RecordingType: CaseIterable, Identifiable {
-    case emotion
-    case dream
-    case activity
-    case thought
-    
-    var id: RecordingType { self }
-    
-    var displayName: String {
-        switch self {
-        case .emotion:
-            return "Emotion"
-        case .dream:
-            return "Dream"
-        case .activity:
-            return "Activity"
-        case .thought:
-            return "Activity"
-        }
-    }
-    
-    var iconName: String {
-        switch self {
-        case .emotion:
-            return "heart.fill"
-        case .dream:
-            return "cloud.moon.fill"
-        case .activity:
-            return "figure.walk"
-        case .thought:
-            return "brain.head.profile"
-        }
-    }
-}
+
 
 
 class RecordingsViewModel: ObservableObject {
@@ -51,7 +17,7 @@ class RecordingsViewModel: ObservableObject {
     @Published var dreamRecordings: [DreamRecording] = []
     @Published var activityRecordings: [ActivityRecording] = []
     @Published var thoughtRecordings: [ThoughtRecording] = []
-
+    
     init() {
         loadAllRecordings()
     }
@@ -61,6 +27,19 @@ class RecordingsViewModel: ObservableObject {
         dreamRecordings = manager.getDreamRecordings()
         activityRecordings = manager.getActivityRecordings()
         thoughtRecordings = manager.getThoughtRecordings()
+    }
+    
+    func getSelectedRecording(ofType type: RecordingType) -> [any Recording]{
+        switch type {
+        case .emotion:
+            return emotionRecordings
+        case .dream:
+            return dreamRecordings
+        case .activity:
+            return activityRecordings
+        case .thought:
+            return thoughtRecordings
+        }
     }
     
     func addRecording<T: Recording>(_ recording: T) {
@@ -76,8 +55,32 @@ class RecordingsViewModel: ObservableObject {
         default:
             break
         }
-        loadAllRecordings() // Refresh all recordings
+        
+        // We update all arrays in the viewModel
+        loadAllRecordings() 
     }
     
-    // TODO : Add the remove function
+    func removeRecording<T: Recording>(ofType type: T.Type, withId id: UUID) {
+        switch type {
+        case is EmotionRecording.Type:
+            manager.removeEmotionRecording(withId: id)
+            
+        case is DreamRecording.Type:
+            manager.removeDreamRecording(withId: id)
+            
+        case is ActivityRecording.Type:
+            manager.removeActivityRecording(withId: id)
+            
+        case is ThoughtRecording.Type:
+            manager.removeThoughtRecording(withId: id)
+            
+        default:
+            break
+        }
+        
+        // We update all arrays in the viewModel
+        loadAllRecordings()
+    }
+    
+    
 }

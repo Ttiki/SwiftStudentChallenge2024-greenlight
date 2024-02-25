@@ -10,7 +10,7 @@ import SwiftUI
 import SwiftUI
 
 struct RecordingDetailView: View {
-    @EnvironmentObject var viewModel: RecordingViewModel
+    @EnvironmentObject var viewModel: RecordingsViewModel
     let recordingType: RecordingType
     @State private var showForm = false
     @State private var showList = false

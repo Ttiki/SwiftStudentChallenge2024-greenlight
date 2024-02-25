@@ -8,20 +8,17 @@
 import SwiftUI
 
 struct RecordingsListView: View {
-    @EnvironmentObject var viewModel: RecordingViewModel
-    
+    @EnvironmentObject var viewModel: RecordingsViewModel
+
     var body: some View {
         NavigationView {
-            
-            List(RecordingType.allCases) { type in
-                IconButtonView(name: type.displayName, iconName: type.iconName)
-                .onTapGesture {
-                    viewModel.selectRecordingType(type)
-                    // Navigate to RecordingDetailView for the selected type
-                    RecordingEntriesListView()
+            List(RecordingType.allCases, id: \.self) { type in
+                NavigationLink(destination: RecordingDetailView(recordingType: type).environmentObject(viewModel)) {
+                    HStack {
+                        IconButtonView(name: type.displayName, iconName: type.iconName)
+                    }
                 }
             }
-            
             .navigationTitle("Recordings")
         }
     }

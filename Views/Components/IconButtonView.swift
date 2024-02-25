@@ -13,13 +13,11 @@ struct IconButtonView: View {
     var iconName: String
     
     var body: some View {
-        NavigationLink(destination: RecordingDetailView()) {
-            HStack {
-                Image(systemName: iconName) // Affiche l'icône
-                    .foregroundColor(.accentColor) // Personnalisez la couleur si nécessaire
-                Text(name)
-            }
-        }
+        
+        Image(systemName: iconName) // Affiche l'icône
+            .foregroundColor(.accentColor) // Personnalisez la couleur si nécessaire
+        Text(name)
+        
     }
 }
 

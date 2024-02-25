@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GeneralRecordingForm: View {
-    @EnvironmentObject var viewModel: RecordingViewModel
+    @EnvironmentObject var viewModel: RecordingsViewModel
     let recordingType: RecordingType
 
     @State private var date = Date()
@@ -34,7 +34,7 @@ struct GeneralRecordingForm: View {
     private func saveRecording() {
         guard let newRecording = createRecording() else { return }
         // `ofType` parameter requires the exact type of the recording, which might need reflection or direct type passing
-        viewModel.addNewRecording(newRecording)
+        viewModel.addRecording(newRecording)
     }
     
     private func createRecording() -> (any Recording)? {

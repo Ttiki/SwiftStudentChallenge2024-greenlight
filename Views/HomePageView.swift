@@ -12,7 +12,7 @@ import SwiftUI
 struct HomePageView: View {
     // Accessing the current theme colors from ThemeManager
     @EnvironmentObject var theme : ThemeManager
-    @EnvironmentObject var recordingViewModel: RecordingViewModel
+    @EnvironmentObject var recordingViewModel: RecordingsViewModel
     
     @ObservedObject var viewModel: HomePageViewModel
 
@@ -43,20 +43,7 @@ struct HomePageView: View {
                     Divider()
                     
                     // Buttons for various actions
-                    NavigationView {
-                        
-                        List(RecordingType.allCases) { type in
-                            IconButtonView(name: type.displayName, iconName: type.iconName)
-                            .onTapGesture {
-                                recordingViewModel.selectRecordingType(type)
-                                // Navigate to RecordingDetailView for the selected type
-                                
-                            }
-                        }
-                        
-                        .navigationTitle("Recordings")
-                    }
-                    .frame(maxWidth: .infinity, alignment: .center)
+                    
                     
                     // Carousel for statistics
                     TabView {

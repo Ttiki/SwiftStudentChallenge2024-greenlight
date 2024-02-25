@@ -9,11 +9,7 @@ struct GreenLight: App {
    
     init() {
     
-        // Load all recordings
-        RecordingsManager.shared.loadRecordings(ofType: EmotionRecording.self)
-        RecordingsManager.shared.loadRecordings(ofType: DreamRecording.self)
-        RecordingsManager.shared.loadRecordings(ofType: ActivityRecording.self)
-        RecordingsManager.shared.loadRecordings(ofType: ThoughtRecording.self)
+        
     }
     
     var body: some Scene {
@@ -30,7 +26,7 @@ struct GreenLight: App {
                 }
             }
             .environmentObject(themeManager) // Correctly providing ThemeManager as an environment object
-            .environmentObject(RecordingViewModel())
+            .environmentObject(RecordingsViewModel())
             .accentColor(themeManager.themeColors.action) // Dynamically set the accent color
             .environment(\.locale, Locale(identifier: "en_US"))
 
