@@ -1,6 +1,6 @@
 //
 //  SwiftUIView.swift
-//  
+//
 //
 //  Created by Clément Combier on 24/02/2024.
 //
@@ -9,25 +9,51 @@ import SwiftUI
 
 struct GeneralRecordingForm: View {
     @EnvironmentObject var viewModel: RecordingsViewModel
+    @Environment(\.presentationMode) var presentationMode
     let recordingType: RecordingType
-
+    
+    
     @State private var date = Date()
-    @State private var maxStrike: Int = 0
-    @State private var currentStrike: Int = 0
     @State private var mood: Double = 5.0
     @State private var description: String = ""
-
+    
+    var moodDescription: String {
+        switch mood {
+        case 0..<2:
+            return "Really Bad"
+        case 2..<4:
+            return "Bad"
+        case 4..<6:
+            return "Neutral"
+        case 6..<8:
+            return "Good"
+        case 8...10:
+            return "Very Good"
+        default:
+            return "Unknown"
+        }
+    }
+    
     var body: some View {
-        Form {
-            DatePicker("Date", selection: $date, displayedComponents: .date)
-            Stepper("Max Strike: \(maxStrike)", value: $maxStrike)
-            Stepper("Current Strike: \(currentStrike)", value: $currentStrike)
-            Slider(value: $mood, in: 0...10, step: 0.1)
-            TextField("Description", text: $description)
-            
-            Button("Save") {
-                saveRecording()
+        NavigationView {
+            Form {
+                DatePicker("Date", selection: $date, displayedComponents: .date)
+                Slider(value: $mood, in: 0...10, step: 0.1)
+                Text("Mood: \(moodDescription)") // This text updates based on the slider's value
+                TextField("Description", text: $description)
+                
+                Button("Save") {
+                    // Logic to save the recording based on the type
+                    saveRecording()
+                    
+                    // Dismiss the form view
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
+            .navigationBarTitle("New \(recordingType.displayName) Recording", displayMode: .inline)
+            .navigationBarItems(trailing: Button("Cancel") {
+                presentationMode.wrappedValue.dismiss()
+            })
         }
     }
     
@@ -40,12 +66,13 @@ struct GeneralRecordingForm: View {
     private func createRecording() -> (any Recording)? {
         switch recordingType {
         case .emotion:
-            return EmotionRecording(id: UUID(), date: date, maxStrike: maxStrike, currentStrike: currentStrike, mood: mood, description: description)
+            return EmotionRecording(id: UUID(), date: date, mood: mood, description: description)
         case .dream:
-            return DreamRecording(id: UUID(), date: date, maxStrike: maxStrike, currentStrike: currentStrike, mood: mood, description: description)
-        // Add cases for other recording types
-        default:
-            return nil
+            return DreamRecording(id: UUID(), date: date, mood: mood, description: description)
+        case .activity:
+            return ActivityRecording(id: UUID(), date: date, mood: mood, description: description)
+        case .thought:
+            return ThoughtRecording(id: UUID(), date: date, mood: mood, description: description)
         }
     }
 }

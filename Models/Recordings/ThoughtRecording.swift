@@ -8,11 +8,9 @@
 import Foundation
 
 
-struct ThoughtRecording: Recording, Codable {
+struct ThoughtRecording: Recording {
     var id: UUID
     var date: Date
-    var maxStrike: Int
-    var currentStrike: Int
     var mood: Double
     var description: String
 }

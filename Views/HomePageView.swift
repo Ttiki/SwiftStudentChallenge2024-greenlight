@@ -15,8 +15,8 @@ struct HomePageView: View {
     @EnvironmentObject var recordingViewModel: RecordingsViewModel
     
     @ObservedObject var viewModel: HomePageViewModel
-
-
+    
+    
     // For quick debug
     @State private var showAlert = false
     
@@ -42,8 +42,17 @@ struct HomePageView: View {
                     
                     Divider()
                     
-                    // Buttons for various actions
-                    
+                    // List of all recording types to quickly add a new entry to the user's list
+                    NavigationView {
+                        List(RecordingType.allCases, id: \.self) { recordingType in
+                            NavigationLink(destination: GeneralRecordingForm(recordingType: recordingType)) {
+                                HStack {
+                                    IconButtonView(name: recordingType.displayName, iconName: recordingType.iconName)
+                                }
+                            }
+                        }
+                        .navigationTitle("Add New Recording")
+                    }
                     
                     // Carousel for statistics
                     TabView {

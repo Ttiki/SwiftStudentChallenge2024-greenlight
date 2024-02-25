@@ -11,33 +11,33 @@ struct RecordingEntriesListView: View {
     @EnvironmentObject var viewModel: RecordingsViewModel
     var recordingType: RecordingType
     
-    let dateFormatter = DateFormatter()
-    
-    
+    var recordings: [any Recording] {
+        viewModel.getSelectedRecording(ofType: recordingType)
+    }
+
     var body: some View {
-        
-        
         List {
-            // Dynamically generate rows based on the recordings of the selected type
-            ForEach(viewModel.getSelectedRecording(ofType: recordingType), id: \.id) { recording in
-                VStack(alignment: .leading) {
-                    // Assuming each recording has a title or can be identified in a meaningful way for display
-                    Text(recording.description)
-                        .padding()
-                    
-                    Text(dateFormatter.string(from: recording.date))
-                        .padding()
+            ForEach(recordings.indices, id: \.self) { index in
+                if let recording = recordings[index] as? (any Recording) {
+                    VStack(alignment: .leading) {
+                        Text(DateFormatter.localizedString(from: recording.date, dateStyle: .long, timeStyle: .none))
+                        Text(recording.description)
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                    }
                 }
             }
-            //.onDelete(perform: deleteRecordings)
+            .onDelete(perform: deleteRecording)
         }
         .navigationTitle("\(recordingType.displayName) Entries")
-        .onAppear {
-            //$viewModel.(ofType: recordingType)
-        }
     }
     
-    private func deleteRecordings(at offsets: IndexSet) {
-       // viewModel.removeRecording(ofType: <#T##Recording.Protocol#>, withId: <#T##UUID#>)(at: offsets, ofType: recordingType)
+    private func deleteRecording(at offsets: IndexSet) {
+        for index in offsets {
+            if let recording = recordings[index] as? (any Recording) {
+                print("Removing recording :")
+                viewModel.removeRecording(recording)
+            }
+        }
     }
 }

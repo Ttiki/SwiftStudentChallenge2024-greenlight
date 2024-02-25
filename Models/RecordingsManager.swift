@@ -66,6 +66,8 @@ class RecordingsManager {
         default:
             print("Unknown recording type")
         }
+        
+        print("New recording added!")
     }
     
     // Remove a recording by giving it the recording object to delete
@@ -83,10 +85,6 @@ class RecordingsManager {
             thoughtRecordings.remove(at: index)
             saveThoughtRecordings()
         }
-    }
-    func removeRecording(_ withId: UUID){
-        
-        
     }
     
     // Loads all the recordings saved to their respective array

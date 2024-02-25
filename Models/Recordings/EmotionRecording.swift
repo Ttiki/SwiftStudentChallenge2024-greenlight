@@ -7,11 +7,9 @@
 
 import Foundation
 
-struct EmotionRecording: Recording, Codable {
+struct EmotionRecording: Recording {
     var id: UUID
     var date: Date
-    var maxStrike: Int
-    var currentStrike: Int
     var mood: Double
     var description: String
 }

@@ -7,11 +7,9 @@
 
 import Foundation
 
-struct ActivityRecording: Recording, Codable{
+struct ActivityRecording: Recording{
     var id: UUID
     var date: Date
-    var maxStrike: Int
-    var currentStrike: Int
     var mood: Double
     var description: String    
 }

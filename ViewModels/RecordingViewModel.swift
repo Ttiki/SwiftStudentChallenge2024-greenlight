@@ -11,7 +11,9 @@ import Foundation
 
 
 class RecordingsViewModel: ObservableObject {
+    
     private let manager = RecordingsManager.shared
+    var currentRecordingType: RecordingType?
     
     @Published var emotionRecordings: [EmotionRecording] = []
     @Published var dreamRecordings: [DreamRecording] = []
@@ -57,22 +59,22 @@ class RecordingsViewModel: ObservableObject {
         }
         
         // We update all arrays in the viewModel
-        loadAllRecordings() 
+        loadAllRecordings()
     }
     
-    func removeRecording<T: Recording>(ofType type: T.Type, withId id: UUID) {
-        switch type {
-        case is EmotionRecording.Type:
-            manager.removeEmotionRecording(withId: id)
+    func removeRecording<T: Recording>(_ recording: T) {
+        switch recording {
+        case let _ as EmotionRecording:
+            manager.removeEmotionRecording(withId: recording.id)
             
-        case is DreamRecording.Type:
-            manager.removeDreamRecording(withId: id)
+        case let _ as DreamRecording:
+            manager.removeDreamRecording(withId: recording.id)
             
-        case is ActivityRecording.Type:
-            manager.removeActivityRecording(withId: id)
+        case let _ as ActivityRecording:
+            manager.removeActivityRecording(withId: recording.id)
             
-        case is ThoughtRecording.Type:
-            manager.removeThoughtRecording(withId: id)
+        case let _ as ThoughtRecording:
+            manager.removeThoughtRecording(withId: recording.id)
             
         default:
             break
@@ -81,6 +83,4 @@ class RecordingsViewModel: ObservableObject {
         // We update all arrays in the viewModel
         loadAllRecordings()
     }
-    
-    
 }
